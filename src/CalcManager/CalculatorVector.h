@@ -14,7 +14,7 @@ template <typename TType>
 class CalculatorVector
 {
 public:
-    ResultCode GetAt(_In_opt_ unsigned int index, _Out_ TType* item)
+    ResultCode GetAt(_In_opt_ unsigned int index, _Out_ TType* item) noexcept
     {
         try
         {
@@ -27,13 +27,13 @@ public:
         return S_OK;
     }
 
-    ResultCode GetSize(_Out_ unsigned int* size)
+    ResultCode GetSize(_Out_ unsigned int* size) noexcept
     {
         *size = static_cast<unsigned>(m_vector.size());
         return S_OK;
     }
 
-    ResultCode SetAt(_In_ unsigned int index, _In_opt_ TType item)
+    ResultCode SetAt(_In_ unsigned int index, _In_opt_ TType item) noexcept
     {
         try
         {
@@ -46,7 +46,7 @@ public:
         return S_OK;
     }
 
-    ResultCode RemoveAt(_In_ unsigned int index)
+    ResultCode RemoveAt(_In_ unsigned int index) noexcept
     {
         if (index < m_vector.size())
         {
@@ -59,7 +59,7 @@ public:
         return S_OK;
     }
 
-    ResultCode InsertAt(_In_ unsigned int index, _In_ TType item)
+    ResultCode InsertAt(_In_ unsigned int index, _In_ TType item) noexcept
     {
         try
         {
@@ -73,7 +73,7 @@ public:
         return S_OK;
     }
 
-    ResultCode Truncate(_In_ unsigned int index)
+    ResultCode Truncate(_In_ unsigned int index) noexcept
     {
         if (index < m_vector.size())
         {
@@ -87,7 +87,7 @@ public:
         return S_OK;
     }
 
-    ResultCode Append(_In_opt_ TType item)
+    ResultCode Append(_In_opt_ TType item) noexcept
     {
         try
         {
@@ -100,19 +100,19 @@ public:
         return S_OK;
     }
 
-    ResultCode RemoveAtEnd()
+    ResultCode RemoveAtEnd() noexcept
     {
         m_vector.erase(--(m_vector.end()));
         return S_OK;
     }
 
-    ResultCode Clear()
+    ResultCode Clear() noexcept
     {
         m_vector.clear();
         return S_OK;
     }
 
-    ResultCode GetString(_Out_ std::wstring* expression)
+    ResultCode GetString(_Out_ std::wstring* expression) noexcept
     {
         unsigned int nTokens = 0;
         ResultCode hr = this->GetSize(&nTokens);
@@ -145,7 +145,7 @@ public:
         return hr;
     }
 
-    ResultCode GetExpressionSuffix(_Out_ std::wstring* suffix)
+    ResultCode GetExpressionSuffix(_Out_ std::wstring* suffix) noexcept
     {
         *suffix = L" =";
         return S_OK;
